@@ -24,7 +24,8 @@
                     @foreach($rules as $key=>$rule)
                         <tr>
                             <td>{{$key +1}}</td>
-                            <td>{!! str_limit($rule->teacher_rules,'30') !!}</td>
+                            <!-- <td>{!! str_limit($rule->teacher_rules,'30') !!}</td> -->
+                            <td>{{substr(strip_tags($rule->teacher_rules),0,20) }}{{strlen(strip_tags($rule->teacher_rules)) > 20 ? "..." : ""}}</td>
 
                             <td>
                                 <a href="#" class="btn btn-sm btn-dark"><span class="fa fa-eye"></span></a>

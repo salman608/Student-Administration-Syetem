@@ -19,6 +19,7 @@
                             <option value="">Select Role</option>
                             <option value="Admin">Admin</option>
                             <option value="User">Student</option>
+                            <option value="Teacher">Teacher</option>
                         </select>
                     </div>
 
@@ -60,7 +61,7 @@
 
                     <div class="form-group col-12 mb-3">
                       <label for="classId" class="col-sm-3 col-form-label text-right">Batch Name</label>
-                      <select name="batch_id" class="form-control col-sm-9" id="batchId" required>
+                      <select name="batch_id" class="form-control col-sm-9" id="batchId" >
                         <option value="">Select Batch</option>
                         @foreach($batches as $batch)
                           <option value="{{$batch->id}}">{{$batch->batch_name}}</option>
@@ -76,7 +77,7 @@
 
                     <div class="form-group col-12 mb-3">
                       <label for="sectionId" class="col-sm-3 col-form-label text-right">Section</label>
-                      <select name="section_id" class="form-control col-sm-9" id="sectionId" required>
+                      <select name="section_id" class="form-control col-sm-9" id="sectionId" >
                           <option value="" id="section">Select Section</option>
                       </select>
 

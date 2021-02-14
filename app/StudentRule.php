@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class StudentRule extends Model
 {
-    //
+    protected $guarded = [];
 }

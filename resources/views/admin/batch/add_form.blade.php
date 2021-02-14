@@ -15,7 +15,7 @@
                     <div class="form-group col-12 mb-3">
                         <label for="batch" class="col-sm-3 col-form-label text-right">Add Batch</label>
                         <input type="text" name="batch_name" placeholder="Enter Batch Name..." class="form-control col-sm-9
-                         " id="batch" minlength="8" required>
+                         " id="batch"  required>
 
                     </div>
 

@@ -27,7 +27,6 @@ class CreateStudentRegsTable extends Migration
             $table->string('email_address')->nullable();
             $table->string('sms_mobile');
             $table->string('date_of_admission');
-            $table->date('date_of_admission');
             $table->string('student_photo')->nullable();
             $table->string('roll_no');
             $table->text('address');

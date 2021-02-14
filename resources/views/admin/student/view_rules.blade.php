@@ -24,7 +24,10 @@
                     @foreach($rules as $key=>$rule)
                         <tr>
                             <td>{{$key +1}}</td>
-                            <td>{!! str_limit($rule->student_rules,'30') !!}</td>
+                            <!-- <td>{!! $rule->student_rules !!}</td> -->
+                            <td>{{substr(strip_tags($rule->student_rules),0,20) }}{{strlen(strip_tags($rule->student_rules)) > 20 ? "..." : ""}}</td>
+
+
 
                             <td>
                                 <a href="#" class="btn btn-sm btn-dark"><span class="fa fa-eye"></span></a>
@@ -34,7 +37,9 @@
                         </tr>
                     @endforeach
                     </tbody>
+                      {{ $rules->links() }}
                 </table>
+
             </div>
         </div>
     </div>

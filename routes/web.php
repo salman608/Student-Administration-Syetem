@@ -66,6 +66,8 @@ Route::get('/create-notice', 'NoticeController@create')->name('add-notice');
 Route::post('/add-notice', 'NoticeController@add')->name('sore-notice');
 Route::get('/view-notice', 'NoticeController@index')->name('notice-index');
 Route::get('/delete-notice/{id}', 'NoticeController@delete')->name('delete-notice');
+Route::get('/file/download/{file}', 'NoticeController@downloadFile');
+Route::get('show/notice', 'NoticeController@showNotice')->name('show-notice');
 
 //=============Teacher Controller===============
 Route::get('/view-rule', 'TeacherRuleController@index')->name('view-teacher-rule');
@@ -74,6 +76,7 @@ Route::post('/store-data', 'TeacherRuleController@storeTeacherRule')->name('stor
 Route::get('/delete-rules/{id}', 'TeacherRuleController@deleteTeacherRule')->name('delete-Trule');
 Route::get('/edit/{id}', 'TeacherRuleController@editTeacherRule')->name('edit-Trule');
 Route::post('/update/{id}', 'TeacherRuleController@updateTeacherRule')->name('update-Trule');
+Route::get('/teacher/rule', 'TeacherRuleController@viewRules')->name('teacher_rule_list');
 
 //================Student Rule=================
 
@@ -83,6 +86,7 @@ Route::post('/store-rule', 'StudentruleController@storeStudentRule')->name('stor
 Route::get('/edit-rule/{id}', 'StudentruleController@editStudentRule')->name('edit-Srule');
 Route::get('/delete-rule/{id}', 'StudentruleController@deleteStudentRule')->name('delete-Srule');
 Route::post('/update-rule/{id}', 'StudentruleController@updateStudentRule')->name('update-Srule');
+Route::get('/student/rule', 'StudentruleController@viewRules')->name('student_rule_list');
 
 //================Batch Controller================
 Route::get('/add/batch', [
@@ -150,4 +154,160 @@ Route::get('/student/reg', [
 Route::get('/student/section', [
     'uses' => 'StudentRegController@bringSection',
     'as' => 'bring-section',
+])->middleware('auth');
+
+//============Studen applycation===========
+Route::get('/student/applyForm', [
+    'uses' => 'ApplycationController@applyForm',
+    'as' => 'apply-form',
+])->middleware('auth');
+
+Route::post('/student/apply', [
+    'uses' => 'ApplycationController@applyStore',
+    'as' => 'store-apply',
+])->middleware('auth');
+
+Route::get('/student/applylist', [
+    'uses' => 'ApplycationController@applyList',
+    'as' => 'apply-list',
+])->middleware('auth');
+
+Route::get('/teacher/applylist', [
+    'uses' => 'ApplycationController@apply_show_by_teacher',
+    'as' => 'apply-list-teacher',
+])->middleware('auth');
+
+Route::get('/teacher/view/{id}', [
+    'uses' => 'ApplycationController@apply_view_by_teacher',
+    'as' => 'view_apply_teacher',
+])->middleware('auth');
+
+Route::get('/teacher/accept/{id}', [
+    'uses' => 'ApplycationController@applyAcceptByTeacher',
+    'as' => 'accept-teacher',
+])->middleware('auth');
+
+Route::get('/teacher/reject/{id}', [
+    'uses' => 'ApplycationController@applyRejectByTeacher',
+    'as' => 'reject-by-teacher',
+])->middleware('auth');
+
+//========admin part=========
+
+Route::get('/admin/applylist', [
+    'uses' => 'ApplycationController@apply_show_by_admin',
+    'as' => 'apply-list-admin',
+])->middleware('auth');
+
+Route::get('/ammin/accept/{id}', [
+    'uses' => 'ApplycationController@applyAcceptByAdmin',
+    'as' => 'accept-by-admin',
+])->middleware('auth');
+
+Route::get('/ammin/reject/{id}', [
+    'uses' => 'ApplycationController@applyRejectByAdmin',
+    'as' => 'reject-by-admin',
+])->middleware('auth');
+
+Route::get('/testing', function(){
+  return auth()->user()->applications->latest()->get();
+});
+
+
+//===========book============
+Route::get('/teachr/addbook', [
+    'uses' => 'BookController@addBook',
+    'as' => 'add-book',
+])->middleware('auth');
+
+Route::get('/teachr/listbook', [
+    'uses' => 'BookController@listBook',
+    'as' => 'list-book',
+])->middleware('auth');
+
+Route::post('/teacher/kistbook', [
+    'uses' => 'BookController@storBook',
+    'as' => 'store-book',
+])->middleware('auth');
+
+Route::get('/teachr/deletebook/{id}', [
+    'uses' => 'BookController@deleteBook',
+    'as' => 'delete-book',
+])->middleware('auth');
+
+Route::get('/student/booklist', [
+    'uses' => 'BookController@studentBookList',
+    'as' => 'student_book_list',
+])->middleware('auth');
+
+Route::get('/file/download/{file}', 'BookController@downloadFile');
+
+
+//=======notice for Student======
+
+Route::get('/teachr/addNotice', [
+    'uses' => 'TNoticeController@addNotice',
+    'as' => 'add-notice',
+])->middleware('auth');
+
+Route::get('/teachr/viewnotice', [
+    'uses' => 'TNoticeController@listNotice',
+    'as' => 'view-tnotice',
+])->middleware('auth');
+
+Route::post('/teacher/storeNotice', [
+    'uses' => 'TNoticeController@storeNotice',
+    'as' => 'store-tnotice',
+])->middleware('auth');
+
+Route::get('/teachr/deletenotice/{id}', [
+    'uses' => 'TNoticeController@deleteNotice',
+    'as' => 'delete-notice',
+])->middleware('auth');
+
+
+Route::get('/student/show/', [
+    'uses' => 'TNoticeController@showStudent',
+    'as' => 'show_by_student',
+])->middleware('auth');
+
+Route::get('/file/download/{file}', 'TNoticeController@downloadFile');
+
+//=============Assingment---------
+
+Route::get('/student/addassingment', [
+    'uses' => 'AssingmentController@addAssingment',
+    'as' => 'add-assingment',
+])->middleware('auth');
+
+Route::post('/student/storeassingment', [
+    'uses' => 'AssingmentController@storeAssingment',
+    'as' => 'store-assingment',
+])->middleware('auth');
+
+Route::get('/student/listassingment', [
+    'uses' => 'AssingmentController@listAssingment',
+    'as' => 'assingment-list',
+])->middleware('auth');
+
+Route::get('/student/deleteassingment/{id}', [
+    'uses' => 'AssingmentController@deleteAssingment',
+    'as' => 'delete-assingment',
+])->middleware('auth');
+
+Route::get('/teacher/listassingment', [
+    'uses' => 'AssingmentController@teacherReview',
+    'as' => 'teacher-review',
+])->middleware('auth');
+
+Route::get('/file/download/{file}', 'AssingmentController@downloadFile');
+
+Route::get('/teacher/acceptassigment/{id}', [
+    'uses' => 'AssingmentController@applyAccept',
+    'as' => 'accept',
+])->middleware('auth');
+
+Route::get('/teacher/rejectassingment/{id}', [
+    'uses' => 'AssingmentController@applyReject',
+    'as' => 'reject',
 ])->middleware('auth');

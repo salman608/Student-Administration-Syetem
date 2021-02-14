@@ -6,22 +6,22 @@
             <div class="col-12 pl-0 pr-0">
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <h4 class="text-center font-weight-bold font-italic mt-3">Notice For Student</h4>
+                        <h4 class="text-center font-weight-bold font-italic mt-3">Add Notice For Student</h4>
                     </div>
                 </div>
-                <form method="POST" action="{{route('sore-notice')}}" enctype="multipart/form-data" autocomplete="off" class="form-inline">
+                <form method="POST" action="{{route('store-tnotice')}}" enctype="multipart/form-data" autocomplete="off" class="form-inline">
                     @csrf
 
 
                       <div class="form-group col-12 mb-3">
-                          <label for="batch" class="col-sm-3 col-form-label text-right">Add Notice</label>
-                          <input type="text" name="notice_title" placeholder="Enter Notice Title..." class="form-control col-sm-9
+                          <label for="batch" class="col-sm-3 col-form-label text-right">Notice Title</label>
+                          <input type="text" name="notice_name" placeholder="Enter Notice Title" class="form-control col-sm-9
                            " id="batch"  required>
 
                       </div>
-                
+
                     <div class="form-group col-12 mb-3">
-                    <label for="file" class="col-sm-3 col-form-label text-right">Notice pdf</label>
+                    <label for="file" class="col-sm-3 col-form-label text-right">Notice Pdf</label>
                     <input type="file" name="file" class="form-control col-sm-9" id="file">
                    </div>
                     <div class="form-group col-12 mb-3">

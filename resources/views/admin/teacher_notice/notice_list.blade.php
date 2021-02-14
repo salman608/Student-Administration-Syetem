@@ -6,7 +6,7 @@
             <div class="col-12 pl-0 pr-0">
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <h4 class="text-center font-weight-bold font-italic mt-3">User List</h4>
+                        <h4 class="text-center font-weight-bold font-italic mt-3">Notice For Student</h4>
                     </div>
                 </div>
 
@@ -18,22 +18,19 @@
                             <th>Notice Title</th>
                             <th>Notice Download</th>
                             <th>Date</th>
-
                             <th style="width: 100px;">Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($notice as $key=>$notice)
+                        @foreach($tnotice as $key=>$tnotice)
                             <tr>
                                 <td>{{$key +1}}</td>
-                                <td>{{$notice->notice_title}}</td>
-                                <td> <a class="btn btn-primary btn-sm" href="/file/download/{{$notice->file}}">Download</a> </td>
-                                <td>{{$notice->created_at}}</td>
+                                <td>{{$tnotice->notice_name}}</td>
+                                <td> <a class="btn btn-primary btn-sm" href="/file/download/{{$tnotice->file}}">Download Notice</a> </td>
+                                <td>{{$tnotice->created_at}}</td>
 
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-dark"><span class="fa fa-eye"></span></a>
-                                
-                                    <a href="{{route('delete-notice',$notice->id)}}" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
+                                 <a href="{{route('delete-notice',$tnotice->id)}}" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
 
                                 </td>
                             </tr>

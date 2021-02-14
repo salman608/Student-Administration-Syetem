@@ -33,6 +33,7 @@ class UserRegistrationController extends Controller
 
     public function userSave(Request $request)
     {
+
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
@@ -51,11 +52,15 @@ class UserRegistrationController extends Controller
     }
     protected function create(array $data)
     {
+
+
         return User::create([
             'role' => $data['role'],
             'name' => $data['name'],
             'mobile' => $data['mobile'],
             'email' => $data['email'],
+            'batch_id' => $data['batch_id'],
+            'section_id' => $data['section_id'],
             'password' => Hash::make($data['password']),
         ]);
     }
@@ -89,7 +94,7 @@ class UserRegistrationController extends Controller
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
             'mobile' => ['required', 'string', 'min:11', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            
         ]);
         $user->name = $request->name;
         $user->mobile = $request->mobile;

@@ -1,6 +1,6 @@
 <!--Footer Start-->
 <footer class="container-fluid">
-    <div class="row footer">
+    <div class="row footer" style="background:#04332b">
         <div class="col-12">
             <p class="pt-2 mb-2 text-center">Copyright &copy; <a class="footer-link" href="">Owner</a> || Developed  by:
                 <a class="footer-link" href="#">Palash(1610) & Arif(1618)</a></p>
@@ -9,7 +9,7 @@
 </footer>
 <!--Footer End-->
 
-  
+
     <!--    magnific popup-->
     <script src="{{asset('admin/assets/plugins/magnific-popup/js/jquery.magnific-popup.min.js')}}"></script>
     <!--    Carousel-->

@@ -13,10 +13,17 @@ class NoticeController extends Controller
 
     public function add(Request $request){
         $this->validate($request,[
-            'notice' => 'required',
+          'notice_title' => 'required',
+          'file' => 'required',
         ]);
         $notice=new Notice();
-        $notice->notice=$request->notice;
+        if($request->file('file')){
+          $file=$request->file('file');
+          $filename=time().'.'.$file->getClientOriginalExtension();
+          $request->file->move('storage/',$filename);
+          $notice->file=$filename;
+        }
+        $notice->notice_title=$request->notice_title;
         $notice->save();
         return redirect()->route('notice-index');
     }
@@ -29,5 +36,14 @@ class NoticeController extends Controller
     public function delete($id){
         $notice=Notice::find($id)->delete();
         return back();
+    }
+
+    public function downloadFile($file){
+      return response()->download('storage/'.$file);
+    }
+
+    public function showNotice(){
+      $notice=Notice::latest()->get();
+      return view('admin.show_notice',compact('notice'));
     }
 }

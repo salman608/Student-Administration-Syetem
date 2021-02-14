@@ -6,7 +6,7 @@
             <div class="col-md-12 pl-0 pr-0">
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <h4 class="text-center font-weight-bold font-italic mt-3">Rules For Student</h4>
+                        <h4 class="text-center font-weight-bold font-italic mt-3">Rules For Teacher</h4>
                     </div>
                 </div>
                 <form method="POST" action="{{route('store-Trules')}}" enctype="multipart/form-data" autocomplete="off" class="form-inline">

@@ -39,4 +39,9 @@ class TeacherRuleController extends Controller
       $rules->update();
       return back();
     }
+
+    public function viewRules(){
+      $rules=TeacherRule::latest()->paginate(3);
+      return view('admin.teacher.view_rule_list',compact('rules'));
+    }
 }

@@ -32,7 +32,7 @@
                             <td>
                                 <a href="{{route('change-user-info',$user->id)}}" class="btn btn-sm btn-dark">Change Info</a>
                                 <a href="{{route('change-user-avatar',$user->id)}}" class="btn btn-sm btn-info">Change Photo</a>
-                                <a href="#" class="btn btn-sm btn-danger">Change Password</a>
+                                
                             </td>
                         </tr>
 

@@ -8,7 +8,7 @@ use App\StudentRule;
 class StudentruleController extends Controller
 {
   public function index(){
-    $rules=StudentRule::all();
+    $rules=StudentRule::latest()->paginate(4);
     return view('admin.student.view_rules',compact('rules'));
   }
 
@@ -38,5 +38,11 @@ class StudentruleController extends Controller
     $rules->student_rules=$request->student_rules;
     $rules->update();
     return back();
+  }
+
+
+  public function viewRules(){
+    $rules=StudentRule::latest()->paginate(3);
+    return view('admin.student.view_rule_list',compact('rules'));
   }
 }
